@@ -2,9 +2,9 @@
 > It's like `jq``, but with ✨AI✨
 
 `aiq` is a no-frills package for embeddings and text classification on the command line, inspired by the power of `jq`. It does 3 things:
-- Compute embeddings for a text field in a stream of JSON objects
-- Train a text classifier on a stream of JSON objects with embeddings
-- Classify a stream of JSON objects with embeddings
+- `embed`: Compute embeddings for a text field in a stream of JSON objects
+- `train`: Train a text classifier on a stream of JSON objects with embeddings
+- `classify`: Classify a stream of JSON objects with embeddings
 
 All of these operations work on JSONL files, but can also read from stdin. This means that you can chain together the embedding step and the training/inference step to do them in parallel.
 
