@@ -9,6 +9,9 @@ __pycache__/
 # Data files
 *.jsonl
 
+# Models
+*.model
+
 # C extensions
 *.so
 
