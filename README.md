@@ -70,7 +70,7 @@ And we get the output:
 ## Installation
 To get started, install with pip:
 ```
-pip install aiq @ git+https://github.com/andersonbcdefg/aiq.git
+pip install aiq@git+https://github.com/andersonbcdefg/aiq.git
 ```
 
 This should install the necessary packages and the aiq executable command-line utility.
