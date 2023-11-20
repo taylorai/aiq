@@ -1,0 +1,6 @@
+fire
+onnxruntime
+transformers
+scikit-learn
+joblib
+numpy
