@@ -13,37 +13,50 @@ All of these operations work on JSONL files, but can also read from stdin. This 
 ### Embed a text field
 Embed the `text` field in `data.jsonl` and write the embeddings to `embeddings.jsonl`:
 ```bash
-cat data.jsonl | aiq embed --input_field text --progress > embeddings.jsonl
+cat data.jsonl | 
+aiq embed --input_field text --progress > embeddings.jsonl
 ```
 
 ### Train a classifier
 Train a classifier with input in the `text` field and labels in the `label` field of `train_data.jsonl` and save it to `classifier.model`:
 ```bash
-cat train_data.jsonl | aiq embed --input_field text | aiq train --label_field label --n_classes 2 --model_path classifier.model
+cat train_data.jsonl | 
+aiq embed --input_field text | 
+aiq train --label_field label --n_classes 2 --model_path classifier.model
 ```
 
 ### Inference with a classifier
 Use the classifier to classify unlabeled data in `unlabeled_data.jsonl` and write the predictions to `predictions.jsonl`:
 ```bash
-cat unlabeled_data.jsonl | aiq embed --input_field text | aiq classify --model_path classifier.model --label_field prediction > predictions.jsonl
+cat unlabeled_data.jsonl | 
+aiq embed --input_field text | 
+aiq classify --model_path classifier.model --label_field prediction > predictions.jsonl
 ```
 
 ### Chaining with `curl` and `jq`
 Because `aiq` reads from stdin, it also plays nice with other awesome command-line utilities, like `jq`. This allows you to, for example, fetch some remote JSON, and then compute embeddings on it. Here, we're grabbing 10 randomly-generated beers and computing the text embedding on their names:
 ```bash
-curl 'https://random-data-api.com/api/v2/beers?size=10' | jq -c '.[]' | aiq embed --input_field name > embeddings.jsonl
+curl 'https://random-data-api.com/api/v2/beers?size=10' | 
+jq -c '.[]' | 
+aiq embed --input_field name > embeddings.jsonl
 ```
 
 ### Training a classifier on a remote dataset
 Or, train a classifier to identify topics on some LLM fine-tuning data. We'll use `jq` to concatenate the "input" and "output" fields into one "text" field, then pass it to `aiq` to embed and train:
 ```bash
-curl https://gist.githubusercontent.com/andersonbcdefg/a4c8483bd7ffd349e685a6c04660c179/raw/ff7c18b8530982312dafe5db750177fb3e8be186/topics.jsonl | jq  -c '{text: (.input + " " + .output), topic: .topic}' | aiq embed --input_field text | aiq train --label_field topic --n_classes 8 --model_path topics.model
+curl https://gist.githubusercontent.com/andersonbcdefg/a4c8483bd7ffd349e685a6c04660c179/raw/ff7c18b8530982312dafe5db750177fb3e8be186/topics.jsonl | 
+jq  -c '{text: (.input + " " + .output), topic: .topic}' | 
+aiq embed --input_field text | 
+aiq train --label_field topic --n_classes 8 --model_path topics.model
 ```
 
 ### Command-line inference with the trained model
 You can then infer topics on some new data:
 ```bash
-echo '{"input": "What is the capital of Italy?", "output": "The capital of Italy is Rome."}' | jq -c '{text: (.input + " " + .output)}' | aiq embed --input_field text | aiq classify --model_path topics.model --label_field prediction
+echo '{"input": "What is the capital of Italy?", "output": "The capital of Italy is Rome."}' | 
+jq -c '{text: (.input + " " + .output)}' | 
+aiq embed --input_field text | 
+aiq classify --model_path topics.model --label_field prediction
 ```
 
 And we get the output:
