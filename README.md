@@ -1,7 +1,7 @@
 # aiq
-it's like jq, but with ✨AI✨
+> It's like `jq``, but with ✨AI✨
 
-aiq is a no-frills package for embeddings and text classification on the command line. It does 3 things:
+`aiq` is a no-frills package for embeddings and text classification on the command line, inspired by the power of `jq`. It does 3 things:
 - Compute embeddings for a text field in a stream of JSON objects
 - Train a text classifier on a stream of JSON objects with embeddings
 - Classify a stream of JSON objects with embeddings
