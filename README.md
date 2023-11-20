@@ -6,7 +6,7 @@
 - `train`: Train a text classifier on a stream of JSON objects with embeddings
 - `classify`: Classify a stream of JSON objects with embeddings
 
-All of these operations work on JSONL files, but can also read from stdin. This means that you can chain together the embedding step and the training/inference step to do them in parallel.
+All of these operations work on JSONL files, but can also read from stdin. This means that you can chain together the embedding step and the training/inference step to do them in parallel, and it means they can be chained with other command-line utilities, which lets you do some pretty neat stuff!
 
 ## Command-Line Examples
 
