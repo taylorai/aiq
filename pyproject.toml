@@ -17,7 +17,7 @@ dependencies = [
     "python-dotenv",
 ]
 name = "aiq-cli"
-version = "0.1.1"
+version = "0.1.2"
 description = "Train classification models from the command line."
 authors = [{ name = "Benjamin Anderson" }]
 license = { text = "MIT" }
