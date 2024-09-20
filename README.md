@@ -1,6 +1,6 @@
 # aiq
 
-![gif of aiq in the terminal](https://cdn.trytaylor.ai/aiq.gif)
+![gif of aiq in the terminal](/aiq.gif)
 
 `aiq` is a no-frills package for embeddings and text classification on the command line, inspired by the power of `jq`. It does 4 things:
 - `aiq label`: Use LLM APIs to label a stream of texts
