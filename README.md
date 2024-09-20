@@ -8,7 +8,7 @@
 - `aiq train`: Train a text classifier (linear model) on a stream of embedded texts with labels
 - `aiq classify`: Classify a stream of unlabeled text embeddings
 
-These commands can operate on text and JSONL files, but they can also **read from stdin.** This means that you can chain them together: for example, you can use a single command to stream a text file in to be labeled, pipe the labeled data through an embedding model, and finally pipe the embedded, labeled training data through classifier training. (See the Quickstart below to learn how!)
+These commands can operate on text and JSONL files, but they can also **read from stdin.** This means that you can chain them together: for example, you can use a single command to stream a text file in to be labeled, pipe the labeled data through an embedding model, and finally pipe the embedded, labeled training data through classifier training. (See the Quickstart to learn how!)
 
 ## Quickstart
 
