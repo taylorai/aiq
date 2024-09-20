@@ -3,21 +3,25 @@ requires = ["setuptools", "wheel"]
 build-backend = "setuptools.build_meta"
 
 [project]
-name = "aiq"
-version = "0.1.0"
-description = "A Python package for data processing and machine learning."
-authors = [{name = "Benjamin Anderson"}]
-license = {text = "MIT"}
-readme = "README.md"
-dependencies=[
+dependencies = [
     "scikit-learn>=1.3.1",
     "fire",
+    "pandas",
     "onnxruntime",
-    "transformers>=4.34",
+    "transformers>=4.44",
     "joblib",
-    "numpy",
-    "rich>=13.7.0"
+    "numpy<2",
+    "rich>=13.7.0",
+    "onnx_embedding_models>=0.0.16",
+    "openai==1.46.1",
+    "python-dotenv",
 ]
+name = "aiq-cli"
+version = "0.1.1"
+description = "Train classification models from the command line."
+authors = [{ name = "Benjamin Anderson" }]
+license = { text = "MIT" }
+readme = "README.md"
 
 [project.scripts]
 aiq = "aiq.aiq:main"
