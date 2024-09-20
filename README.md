@@ -2,7 +2,7 @@
 
 ![gif of aiq in the terminal](/aiq.gif)
 
-`aiq` is a no-frills package for embeddings and text classification on the command line, inspired by the power of `jq`. It does 4 things:
+`aiq` is a no-frills CLI for embeddings and text classification, inspired by the power of `jq`. It does 4 things:
 - `aiq label`: Use LLM APIs to label a stream of texts
 - `aiq embed`: Compute embeddings on a stream of texts
 - `aiq train`: Train a text classifier (linear model) on a stream of embedded texts with labels
