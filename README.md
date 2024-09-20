@@ -1,13 +1,14 @@
 # aiq
-> It's like `jq`, but with ✨AI✨
 
-`aiq` is a no-frills package for data labeling, embeddings and text classification on the command line, inspired by the power of `jq`. It does 4 things:
+![gif of aiq in the terminal](https://cdn.trytaylor.ai/aiq.gif)
+
+`aiq` is a no-frills package for embeddings and text classification on the command line, inspired by the power of `jq`. It does 4 things:
 - `aiq label`: Use LLM APIs to label a stream of texts
-- `aiq embed`: Compute embeddings a stream of texts
+- `aiq embed`: Compute embeddings on a stream of texts
 - `aiq train`: Train a text classifier (linear model) on a stream of embedded texts with labels
 - `aiq classify`: Classify a stream of unlabeled text embeddings
 
-All of these operations work on JSONL files (and some on text files), but they can also **read from stdin.** This means that you can chain these commands together: for example, stream a text file in to be labeled, pipe the labeled data through an embedding model, and finally pipe the embedded, labeled training data through classifier training.
+These commands can operate on text and JSONL files, but they can also **read from stdin.** This means that you can them together: for example, you can use a single command to stream a text file in to be labeled, pipe the labeled data through an embedding model, and finally pipe the embedded, labeled training data through classifier training. (See the Quickstart below to learn how!)
 
 ## Quickstart
 
@@ -22,13 +23,13 @@ To use `aiq label`, you'll also need an OpenAI key. The other commands can be us
 export OPENAI_API_KEY=sk-xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
 ```
 
-We include an example dataset to try in the `examples` folder. After downloading `recipes.txt` and `label_options.yaml`, you can run the following command to train a model to classify recipe names into breakfast, lunch/dinner, dessert, etc.
+For this quickstart, we include an example dataset and labels file (`recipes.txt` and `label_options.yaml`) to try in the `examples` folder. After downloading these files, you can run the following command to train a model to classify recipe names into breakfast, lunch/dinner, dessert, etc.
 
 ```bash
 aiq label --file recipes.txt --label-options-file label_options.yaml | aiq embed | aiq train --model_path model.joblib --n-classes 10
 ```
 
-This uses an LLM to label the text in `unlabeled.txt`, with the label options from `options.yaml`. The text fields are embedded using an embedding model (runs locally on CPU). Finally, a passive-aggressive classifier is trained using the labels and embeddings. The resulting model will be saved to `model.joblib`.
+This uses an LLM to label the text in `unlabeled.txt`, with the label options from `label_options.yaml`. The text fields are embedded using an embedding model (runs locally on CPU). Finally, a passive-aggressive classifier is trained using the labels and embeddings. The resulting model will be saved to `model.joblib`.
 
 You can then use `aiq classify` to run the model.
 
@@ -42,7 +43,7 @@ echo '{"text": "Maple-bacon and blueberry muffins"}' | aiq embed | aiq classify 
 {"text": "Maple-bacon and blueberry muffins", "label": "breakfast"}
 ```
 
-You'll also get a warning about loading the model, which is a reminder that it's not safe to load `aiq` models from untrusted sources. You can disable this warning by passing the `--no-warn` flag to `aiq classify`.
+You'll also get a warning about loading the model, which is a reminder that it's not safe to load `aiq` models from untrusted sources. You can disable this warning by setting the `--no-warn` flag for `aiq classify`.
 
 ## Examples
 
@@ -179,4 +180,4 @@ Flags:
 - `--no-warn`: If set, do not show the error about loading models from untrusted sources.
 
 ## Use from Python
-This tool is written in Python, and it works fine as a Python library. You can import the `label`, `embed`, `train`, and `classify` functions from `aiq` and use them directly. They aren't doing anything super fancy, but this could still be a convenient set of utilities.
+This tool is written in Python, and it works fine as a Python library. You can import the `label`, `embed`, `train`, and `classify` functions from `aiq` and use them directly.

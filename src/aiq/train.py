@@ -98,7 +98,7 @@ def train(
                 else:
                     total_steps = "???"
                 accuracy = model.score(X_test, y_test)
-                status.update(f"[bold]Training Step:[/bold] {i + 1:>3}/{total_steps} | [bold]Test Accuracy = [green]{accuracy:.3f}[/green][/bold]")
+                status.update(f"[bold]Training Step:[/bold] {i:>3}/{total_steps} | [bold]Test Accuracy = [green]{accuracy:.3f}[/green][/bold]")
 
                 batch = []
 
